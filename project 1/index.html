@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOVAFORM — Step Into the Future</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Cursor spotlight, purely decorative, positioned by JS -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ============ HEADER / NAV ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#home" class="logo">NOVA<span>FORM</span></a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#rack" class="nav-link">Shoes</a>
+        <a href="#rack" class="nav-link">Categories</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#order" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M4 6h2l1.2 11.2a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.8L20 8H7" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="21" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="17" cy="21" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-orb orb-a"></div>
+      <div class="hero-orb orb-b"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-particles" id="heroParticles"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <p class="hero-kicker">Fall Collection — 04</p>
+        <h1 class="hero-title">STEP INTO<br>THE FUTURE.</h1>
+        <p class="hero-desc">
+          Novaform builds footwear at the edge of material science and motion design —
+          shoes engineered for cities that never slow down.
+        </p>
+        <div class="hero-cta-row">
+          <button class="btn btn-primary" id="shopNowBtn">Shop Now</button>
+          <a href="#featured" class="btn btn-ghost">Watch the Drop</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>128k</strong><span>Runners equipped</span></div>
+          <div><strong>4.9</strong><span>Average rating</span></div>
+          <div><strong>12</strong><span>Cities launched in</span></div>
+        </div>
+      </div>
+
+      <div class="hero-shoe-stage" id="heroShoeStage">
+        <div class="hero-shoe" id="heroShoe">
+          <img src="image-removebg-preview.png" alt="Novaform hero sneaker" class="shoe-photo hero-shoe-photo" />
+          <div class="shoe-shadow"></div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#rack" class="scroll-cue" aria-label="Scroll down">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ============ SHOE RACK / COLLECTION ============ -->
+  <section class="rack-section" id="rack">
+    <div class="section-head reveal">
+      <h2>The Rack</h2>
+      <p>Six silhouettes, one obsession with motion. Tap a pair to pull it off the shelf.</p>
+    </div>
+
+    <div class="filter-row reveal" id="filterRow">
+      <button class="filter-btn is-active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="running">Running</button>
+      <button class="filter-btn" data-filter="basketball">Basketball</button>
+      <button class="filter-btn" data-filter="casual">Casual</button>
+      <button class="filter-btn" data-filter="streetwear">Streetwear</button>
+      <button class="filter-btn" data-filter="sports">Sports</button>
+    </div>
+
+    <div class="rack-shelf" id="rackShelf" aria-hidden="false">
+      <!-- shoe cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- ============ SHOE DETAIL OVERLAY ============ -->
+  <div class="detail-overlay" id="detailOverlay">
+    <div class="detail-backdrop" id="detailBackdrop"></div>
+    <div class="detail-panel" id="detailPanel" role="dialog" aria-modal="true" aria-labelledby="detailName">
+      <button class="detail-close" id="detailClose" aria-label="Close">&times;</button>
+      <div class="detail-visual" id="detailVisual"></div>
+      <div class="detail-info">
+        <p class="detail-category" id="detailCategory">Category</p>
+        <h3 id="detailName">Shoe Name</h3>
+        <p class="detail-desc" id="detailDesc">Description</p>
+        <div class="detail-price" id="detailPrice">$0</div>
+        <button class="btn btn-primary" id="detailAddToCart">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FEATURED SHOE ============ -->
+  <section class="featured-section" id="featured">
+    <div class="featured-bg" aria-hidden="true">
+      <div class="featured-ring ring-a"></div>
+      <div class="featured-ring ring-b"></div>
+    </div>
+    <div class="featured-inner">
+      <div class="featured-visual reveal">
+        <div class="featured-shoe" id="featuredShoe">
+          <img src="image-removebg-preview (5).png" alt="Aurora Runner sneaker" class="shoe-photo" />
+        </div>
+      </div>
+      <div class="featured-copy reveal">
+        <p class="hero-kicker">Limited Drop</p>
+        <h2>The Aurora Runner</h2>
+        <p class="featured-desc">
+          Knit from a single continuous thread and cushioned on a reactive foam core,
+          the Aurora Runner is built for the mile you didn't plan on running.
+        </p>
+        <ul class="spec-list">
+          <li><span>Weight</span><strong>218g</strong></li>
+          <li><span>Cushioning</span><strong>Reactive Foam+</strong></li>
+          <li><span>Upper</span><strong>Single-thread knit</strong></li>
+          <li><span>Drop</span><strong>6mm</strong></li>
+        </ul>
+        <div class="featured-price">$219</div>
+        <button class="btn btn-primary" id="featuredBuyBtn">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about-section" id="about">
+    <div class="about-inner reveal">
+      <h2>Built by runners, worn by the city.</h2>
+      <p>
+        Novaform started in a converted bike shop in 2019 with one question: what would a shoe
+        look like if it was designed for the next decade instead of the last one? Every silhouette
+        we ship since has answered a little differently.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ORDER / DELIVERY FORM ============ -->
+  <section class="order-section" id="order">
+    <div class="section-head reveal">
+      <h2>Complete Your Order</h2>
+      <p>Fill in your delivery details and we'll get your pair moving.</p>
+    </div>
+
+    <form class="order-form reveal" id="orderForm" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Jordan Miles" required />
+          <span class="field-error" data-error-for="fullName"></span>
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          <span class="field-error" data-error-for="email"></span>
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 555 123 4567" required />
+          <span class="field-error" data-error-for="phone"></span>
+        </div>
+        <div class="field">
+          <label for="shoeSize">Shoe Size</label>
+          <input type="text" id="shoeSize" name="shoeSize" placeholder="US 9.5" required />
+          <span class="field-error" data-error-for="shoeSize"></span>
+        </div>
+        <div class="field field-wide">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" placeholder="Street and number" required />
+          <span class="field-error" data-error-for="address"></span>
+        </div>
+        <div class="field">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="City" required />
+          <span class="field-error" data-error-for="city"></span>
+        </div>
+        <div class="field">
+          <label for="zip">Postal / ZIP Code</label>
+          <input type="text" id="zip" name="zip" placeholder="00000" required />
+          <span class="field-error" data-error-for="zip"></span>
+        </div>
+        <div class="field">
+          <label for="selectedShoe">Selected Shoe</label>
+          <select id="selectedShoe" name="selectedShoe" required>
+            <option value="">Choose a shoe</option>
+          </select>
+          <span class="field-error" data-error-for="selectedShoe"></span>
+        </div>
+        <div class="field field-wide">
+          <label for="instructions">Delivery Instructions <em>(optional)</em></label>
+          <textarea id="instructions" name="instructions" rows="3" placeholder="Leave at the front desk, ring twice…"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-large">Place Order</button>
+      <p class="form-success" id="formSuccess" role="status"></p>
+    </form>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="logo">NOVA<span>FORM</span></a>
+        <p>Footwear engineered for motion, built for the city that never idles.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#home">Home</a>
+        <a href="#rack">Shoes</a>
+        <a href="#about">About</a>
+        <a href="#order">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">X / Twitter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@novaform.example">hello@novaform.example</a>
+        <a href="tel:+15551234567">+1 555 123 4567</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footerYear"></span> Novaform. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ CART PANEL ============ -->
+  <div class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-panel-head">
+      <h3>Your Cart</h3>
+      <button class="detail-close" id="cartClose" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty" id="cartEmpty">Your cart is empty. Go pick a pair off the rack.</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <a href="#order" class="btn btn-primary btn-full" id="cartCheckoutBtn">Checkout</a>
+    </div>
+  </div>
+  <div class="cart-scrim" id="cartScrim"></div>
+
+  <!-- Toast for add-to-cart confirmation -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
